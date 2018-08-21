@@ -1,12 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace DatingApp.API.DTOs
 {
-    public class UserDto
+    public class UserLoginDto
     {
-        [Required]
         public string Username{ get; set; }
-        [Required]
         public string Password{ get; set; }
     }
 }
