@@ -2,5 +2,6 @@
 bin
 obj
 *.db
-DS_Store
+.DS_Store
 *.pdb
+.idea
