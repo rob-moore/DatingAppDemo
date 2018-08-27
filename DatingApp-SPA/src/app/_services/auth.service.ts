@@ -4,27 +4,26 @@ import { map } from 'rxjs/operators';
 import { User } from '../_models/user';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:5000/api/auth';
+    baseUrl = 'http://localhost:5000/api/auth';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  login(model: User) {
-    return this.http.post(`${this.baseUrl}/login`, model)
-      .pipe(
-        map((res: any) => {
-          const user = res;
-          if (user) {
-            localStorage.setItem('token', user.token);
-          }
-        })
-      );
-  }
+    login(model: User) {
+        return this.http.post(`${this.baseUrl}/login`, model)
+            .pipe(
+                map((res: any) => {
+                    const user = res;
+                    if (user) {
+                        localStorage.setItem('token', user.token);
+                    }
+                })
+            );
+    }
 
-  register(model: User) {
-      return this.http.post(`${this.baseUrl}/register`, model);
-  }
-
+    register(model: User) {
+        return this.http.post(`${this.baseUrl}/register`, model);
+    }
 }

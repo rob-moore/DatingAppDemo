@@ -3,33 +3,32 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  model = new User;
+    model = new User;
+    constructor(private authSvc: AuthService) { }
 
-  constructor(private authSvc: AuthService) { }
+    ngOnInit() {
+    }
 
-  ngOnInit() {
-  }
+    login(): void {
+        this.authSvc.login(this.model).subscribe(next => {
+            console.log('Login successful');
+        }, err => {
+            console.log('Failed to login');
+        });
+    }
 
-  login(): void {
-    this.authSvc.login(this.model).subscribe(next => {
-      console.log('Login successful');
-    }, err => {
-      console.log('Failed to login');
-    });
-  }
+    loggedIn(): boolean {
+        const token = localStorage.getItem('token');
+        return !!token;
+    }
 
-  loggedIn(): boolean {
-    const token = localStorage.getItem('token');
-    return !!token;
-  }
-
-  logout() {
-    localStorage.removeItem('token');
-    console.log('Logged out');
-  }
+    logout(): void {
+        localStorage.removeItem('token');
+        console.log('Logged out');
+    }
 }

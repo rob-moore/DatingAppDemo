@@ -12,7 +12,11 @@
             "element",
             "app",
             "kebab-case"
-		],
-		"indent": [true, "spaces", 4]
+        ],
+        "indent": [
+            true,
+            "spaces",
+            4
+        ]
     }
 }
